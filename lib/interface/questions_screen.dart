@@ -19,34 +19,29 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
 
   final List<Map<String, dynamic>> questions = [
     {
-      'question': "What gas is the main component of the Earth's atmosphere?",
-      'answers': ['Oxygen', 'Nitrogen', 'Carbon dioxide', 'Hydrogen'],
+      'question': "Which element in the periodic table has the symbol Fe?",
+      'answers': ['Fluorine', 'Iron', 'Phosphorus', 'Francium'],
       'correct': 1,
     },
     {
-      'question': 'Which planet in the Solar System is known for its rings?',
-      'answers': ['Mars', 'Jupiter', 'Saturn', 'Venus'],
+      'question': 'Who won the 2022 FIFA World Cup?',
+      'answers': ['Germany', 'Argentina', 'France', 'Brazil'],
+      'correct': 1,
+    },
+    {
+      'question': 'Which planet in our solar system is the largest in size?',
+      'answers': ['Earth', 'Venus', 'Jupiter', 'Mars'],
       'correct': 2,
     },
     {
-      'question': 'Who wrote the novel War and Peace?',
-      'answers': [
-        'Fyodor Dostoevsky',
-        'Leo Tolstoy',
-        'Alexander Pushkin',
-        'Anton Chekhov',
-      ],
+      'question': 'Which of the following is a programming language?',
+      'answers': ['HTML', 'Python', 'CSS', 'SQL'],
       'correct': 1,
     },
     {
-      'question': 'Which element in the periodic table has the symbol "O"?',
-      'answers': ['Osmium', 'Tin', 'Oxygen', 'Gold'],
+      'question': "Which gas is primarily responsible for the greenhouse effect on Earth?",
+      'answers': ['Oxygen', 'Nitrogen', 'Carbon dioxide', 'Helium'],
       'correct': 2,
-    },
-    {
-      'question': "Which country is the birthplace of the Olympic Games?",
-      'answers': ['Italy', 'Greece', 'France', 'Egypt'],
-      'correct': 1,
     },
   ];
 
