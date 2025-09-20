@@ -65,16 +65,6 @@ class ResultScreen extends StatelessWidget {
               textColor: Colors.white,
               color: Color(0xFF26A69A),
             ),
-            // ElevatedButton(
-            //   child: Text('Go Home'),
-            //   onPressed: () {
-            //     Navigator.pushAndRemoveUntil(
-            //       context,
-            //       MaterialPageRoute(builder: (_) => HomeScreen()),
-            //           (route) => false,
-            //     );
-            //   },
-            // ),
           ],
         ),
       ),

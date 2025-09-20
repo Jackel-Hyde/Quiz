@@ -12,28 +12,32 @@ class HistoryScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        scrolledUnderElevation: 0,
+      ),
       body: SafeArea(
-        child: Container(
-          padding: EdgeInsets.only(top: 20, right: 20, left: 20),
-          child: Column(
-            children: [
-              Text(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Center(
+              child: Text(
                 'History',
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
-              SizedBox(height: 20),
-              Expanded(
-                child: quizProvider.history.isEmpty
-                    ? Center(
-                  child: Text('No attempts yet', style: TextStyle(fontSize: 18, color: Colors.grey)),
-                )
-                    : ListView.builder(
-                  itemCount: quizProvider.history.length,
-                  itemBuilder: (context, index) {
-                    final attempt = quizProvider.history[index];
-                    return Container(
+            ),
+            const SizedBox(height: 20),
+            Expanded(
+              child: ListView.builder(
+                physics: const BouncingScrollPhysics(),
+                itemCount: quizProvider.history.length,
+                itemBuilder: (context, index) {
+                  final attempt = quizProvider.history[index];
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                    child: Container(
                       height: 50,
-                      margin: EdgeInsets.symmetric(vertical: 8),
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(8),
@@ -42,7 +46,7 @@ class HistoryScreen extends StatelessWidget {
                             color: Colors.black.withOpacity(0.25),
                             spreadRadius: 1,
                             blurRadius: 6,
-                            offset: Offset(0, 4),
+                            offset: const Offset(0, 4),
                           ),
                         ],
                       ),
@@ -50,18 +54,24 @@ class HistoryScreen extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(horizontal: 10),
                         child: Row(
                           children: [
-                            Text('Attempt №${index + 1}', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500)),
-                            Spacer(),
-                            Text('${attempt.correctAnswers}/${attempt.totalQuestions}', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500)),
+                            Text('Attempt №${index + 1}',
+                                style: const TextStyle(
+                                    fontSize: 16, fontWeight: FontWeight.w500)),
+                            const Spacer(),
+                            Text(
+                              '${attempt.correctAnswers}/${attempt.totalQuestions}',
+                              style: const TextStyle(
+                                  fontSize: 16, fontWeight: FontWeight.w500),
+                            ),
                           ],
                         ),
                       ),
-                    );
-                  },
-                ),
+                    ),
+                  );
+                },
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:quiz/interface/correct_screen.dart';
 import 'package:quiz/interface/result_screen.dart';
@@ -28,7 +30,12 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
     },
     {
       'question': 'Who wrote the novel War and Peace?',
-      'answers': ['Fyodor Dostoevsky', 'Leo Tolstoy', 'Alexander Pushkin', 'Anton Chekhov'],
+      'answers': [
+        'Fyodor Dostoevsky',
+        'Leo Tolstoy',
+        'Alexander Pushkin',
+        'Anton Chekhov',
+      ],
       'correct': 1,
     },
     {
@@ -57,7 +64,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
             totalQuestions: questions.length,
           ),
         ),
-            (route) => false,
+        (route) => false,
       );
     }
   }
@@ -96,8 +103,35 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
 
                   final result = await Navigator.push(
                     context,
-                    MaterialPageRoute(
-                      builder: (_) => CorrectScreen(isCorrect: isCorrect),
+                    PageRouteBuilder(
+                      transitionDuration: Duration(milliseconds: 600),
+                      reverseTransitionDuration: Duration(milliseconds: 400),
+                      pageBuilder: (_, __, ___) => CorrectScreen(isCorrect: isCorrect),
+                      transitionsBuilder: (_, animation, __, child) {
+                        final offsetAnimation = Tween<Offset>(
+                          begin: const Offset(0, 1),
+                          end: Offset.zero,
+                        ).animate(CurvedAnimation(
+                          parent: animation,
+                          curve: Curves.easeInOut,
+                        ));
+
+                        return Stack(
+                          children: [
+                            BackdropFilter(
+                              filter: ImageFilter.blur(
+                                sigmaX: 2 * animation.value,
+                                sigmaY: 2 * animation.value,
+                              ),
+                              child: Container(color: Colors.black.withOpacity(0)),
+                            ),
+                            SlideTransition(
+                              position: offsetAnimation,
+                              child: child,
+                            ),
+                          ],
+                        );
+                      },
                     ),
                   );
 
